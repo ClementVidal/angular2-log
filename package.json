@@ -1,0 +1,23 @@
+{
+  "name": "angular2-log",
+  "version": "0.0.0",
+  "description": "Angular2 simple log system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClementVidal/angular2-log.git"
+  },
+  "keywords": [
+    "angular2",
+    "log"
+  ],
+  "author": "Clement Vidal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ClementVidal/angular2-log/issues"
+  },
+  "homepage": "https://github.com/ClementVidal/angular2-log#readme"
+}
