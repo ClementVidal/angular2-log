@@ -1,0 +1,44 @@
+<html>
+
+    <head>
+
+        <base href="/">
+
+        <title>Angular 2 QuickStart</title>
+
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- Load libraries required by angular2 -->
+        <!-- IE required polyfills, in this exact order -->
+        <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+        <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+
+        <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+        <script src="node_modules/systemjs/dist/system.src.js"></script>
+        <script src="node_modules/rxjs/bundles/Rx.js"></script>
+        <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+
+        <!-- Configure SystemJS -->
+        <script>
+            System.config({
+                packages: {
+                    'dist/js/': {
+                        format: 'register',
+                        defaultExtension: 'js'
+                    }
+                }
+            });
+            System.import ('dist/js/demo').then(null, console.error.bind(console));
+        </script>
+
+    </head>
+
+    <!-- Display the application -->
+    <body>
+        <demo-app>Loading...</mondo-app>
+    </body>
+
+</html>
