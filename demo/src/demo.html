@@ -10,56 +10,68 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-3">
-            <button class="btn btn-primary" (click)="log.debug( 'Debug log')">
-                Log debug
-            </button>
+            <h1>
+                Main
+            </h1>
+            <div>
+                <button class="btn btn-success" (click)="log.debug( 'Debug log')">
+                    Log debug
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-info" (click)="log.info( 'Info log')">
+                    Log info
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-warning" (click)="log.warning( 'Warning log')">
+                    Log warning
+                </button>
+            </div>
+            <div>
+                <button class="btn btn btn-danger" (click)="log.error( 'Error log')">
+                    Log Error
+                </button>
+            </div>
         </div>
 
         <div class="col-xs-3">
-            <button class="btn btn-primary" (click)="log.info( 'Info log')">
-                Log info
-            </button>
+            <h1>
+                Backend
+            </h1>
+            <div>
+                <button class="btn btn-success" (click)="log.to('backend').debug( 'Debug log')">
+                    Log debug
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-info" (click)="log.to('backend').info( 'Info log')">
+                    Log info
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-warning" (click)="log.to('backend').warning( 'Warning log')">
+                    Log warning
+                </button>
+            </div>
+            <div>
+                <button class="btn btn btn-danger" (click)="log.to('backend').error( 'Error log')">
+                    Log Error
+                </button>
+            </div>
         </div>
 
         <div class="col-xs-3">
-            <button class="btn btn-primary" (click)="log.warning( 'Warning log')">
-                Log warning
-            </button>
+            <h1>
+                Publications
+            </h1>
+            <div>
+                <button class="btn btn-primary" (click)="log.to('backend').debug( 'Debug log')">
+                    Close Backend publication
+                </button>
+            </div>
+            
         </div>
-
-        <div class="col-xs-3">
-            <button class="btn btn-primary" (click)="log.error( 'Error log')">
-                Log error
-            </button>
-        </div>
-
-    </div>
-
-    <div class="row" >
-        <div class="col-xs-3">
-            <button class="btn btn-primary" (click)="log.to('backend').debug( 'Debug log')">
-                Log debug
-            </button>
-        </div>
-
-        <div class="col-xs-3">
-            <button class="btn btn-primary" (click)="log.to('backend').info( 'Info log')">
-                Log info
-            </button>
-        </div>
-
-        <div class="col-xs-3">
-            <button class="btn btn-primary" (click)="log.to('backend').warning( 'Warning log')">
-                Log warning
-            </button>
-        </div>
-
-        <div class="col-xs-3">
-            <button class="btn btn-primary" (click)="log.to('backend').error( 'Error log')">
-                Log error
-            </button>
-        </div>
-
 
     </div>
 
