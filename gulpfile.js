@@ -11,13 +11,13 @@ var path = require('path');
  * Tasks for building, testing, and running demo
  */
 // build_demo
-var demoProject = ts.createProject('demo/tsconfig.json', {});
-gulp.task('build_demo', ['build_src'], function() {
+var demoProject = ts.createProject('demo/src/tsconfig.json', {});
+gulp.task('build_demo', function() {
 
     var tsResult = gulp.src(['demo/src/*.ts'])
-        .pipe(ts(tsProject, ts.reporter.defaultReporter()));
+        .pipe(ts(demoProject, ts.reporter.defaultReporter()));
 
-    return tsResult.js.pipe(gulp.dest('./demo/dist/js'));
+    return tsResult.js.pipe(gulp.dest('./demo/lib'));
 });
 
 // serve_demo
@@ -28,7 +28,7 @@ gulp.task('serve_demo', function() {
 });
 
 // watch demo sources files
-gulp.task('watch_demo', ['build_demo', 'serve_demo', 'watch_src'], function() {
+gulp.task('watch_demo', function() {
     gulp.watch(['demo/dist/js/*', 'demo/index.html'], function(file) {
         var notif = {
             type: 'changed',
@@ -43,7 +43,7 @@ gulp.task('watch_demo', ['build_demo', 'serve_demo', 'watch_src'], function() {
  * Tasks for building, and testing angular-log
  */
 // build
-var tsProject = ts.createProject('tsconfig.json', {});
+var tsProject = ts.createProject('src/tsconfig.json', {});
 gulp.task('build_src', function() {
 
     var tsResult = gulp.src([
@@ -51,17 +51,19 @@ gulp.task('build_src', function() {
         ])
         .pipe(ts(tsProject, ts.reporter.defaultReporter()));
 
-    return tsResult.js.pipe(gulp.dest('./')).pipe(gulp.dest('./demo/dist/js'));
+    tsResult.dts.pipe(gulp.dest('./lib'));
+    return tsResult.js.pipe(gulp.dest('./lib'));
 });
 
 // build watch
-gulp.task('watch_src', ['build_src'], function() {
+gulp.task('watch_src', function() {
     gulp.watch(['src/*.ts'], ['build_src']);
 });
 
 /**
  * Generic tasks
  */
-gulp.task('build', ['build_demo']);
+gulp.task('build', ['build_src', 'build_demo']);
+gulp.task('demo', ['build', 'watch_src', 'watch_demo', 'serve_demo']);
 
-gulp.task('default', ['build_src', 'build_demo', 'watch_demo']);
+gulp.task('default', ['demo']);

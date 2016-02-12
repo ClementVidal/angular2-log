@@ -31,16 +31,19 @@
         <script>
             System.config({
                 map: {
-                    'angular2-log': 'dist/js'
+                    'angular2-log': 'node_modules/angular2-log'
                 },
+                defaultJSExtensions: true,
                 packages: {
-                    'dist/js/': {
-                        format: 'register',
-                        defaultExtension: 'js'
+                    "/angular2": {
+                        "defaultExtension": false
+                    },
+                    "/rxjs": {
+                        "defaultExtension": false
                     }
                 }
             });
-            System.import ('dist/js/demo').then(null, console.error.bind(console));
+            System.import ('lib/demo').then(null, console.error.bind(console));
         </script>
 
     </head>

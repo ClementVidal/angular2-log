@@ -7,6 +7,10 @@ export class LogService {
 
     }
 
+    to(loggerName): LogService {
+        return this;
+    }
+
     debug(...args) {
         var t = ["%cDebug: ", "color:green"];
         Array.prototype.push.apply(t, arguments);
@@ -28,4 +32,5 @@ export class LogService {
         Array.prototype.push.apply(t, arguments);
         console.log.apply(console, t);
     }
+
 }
