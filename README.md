@@ -4,11 +4,32 @@ This package provide an easy to use log system for angular2 applications.
 
 ## Installation
 
-TODO: Describe the installation process
+npm install angular2-log
 
 ## Usage
 
-TODO: Write usage instructions
+Add to your injector the provider for the log service:
+```javascript
+import {LogService} from 'angular2-log/log';
+
+// To add the provider at your root injector
+bootstrap(DemoComponent, [LogService]);
+```
+
+Inject the service where needed:
+
+```javascript
+export class YourComponent {
+    constructor(public logService: LogService) {
+		this.logService.debug('Your debug stuff');
+		this.logService.info('An info');
+		this.logService.warning('Take care ');
+		this.logService.error('Too late !');
+    }
+}
+```
+
+Use it ! :)
 
 ## Contributing
 
@@ -20,10 +41,13 @@ TODO: Write usage instructions
 
 ## History
 
-0.0.0: Still working on it :)
+* 0.0.0: Still working on it :)
 
 ## Contact
 
+* Web: [http://clement-vidal.fr](http://clement-vidal.fr)
+* Twitter: [clementvidal_](https://twitter.com/clementvidal_)
+* Mail: clementvidalperso(at)gmail(dot)com
 
 ## License
 
