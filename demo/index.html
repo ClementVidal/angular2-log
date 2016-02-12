@@ -1,10 +1,8 @@
 <html>
-
     <head>
-
         <base href="/">
 
-        <title>Angular 2 QuickStart</title>
+        <title>angular2-log</title>
 
         <meta charset="utf-8"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -20,10 +18,21 @@
         <script src="node_modules/rxjs/bundles/Rx.js"></script>
         <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
 
+        <!-- setup jquery-->
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+        <!-- setup bootstrap-->
+        <link rel="stylesheet" href="node_modules/tether/dist/css/tether.min.css"></link>
+        <script src="node_modules/tether/dist/js/tether.min.js"></script>
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"></link>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
         <!-- Configure SystemJS -->
         <script>
             System.config({
+                map: {
+                    'angular2-log': 'dist/js'
+                },
                 packages: {
                     'dist/js/': {
                         format: 'register',

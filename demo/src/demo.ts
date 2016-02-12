@@ -1,10 +1,18 @@
 import {bootstrap}    from 'angular2/platform/browser'
 import {Component} from 'angular2/core';
+import {LogService} from 'angular2-log/log';
 
 @Component({
     selector: 'demo-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    templateUrl: 'src/demo.html'
 })
-export class DemoComponent { }
+export class DemoComponent {
 
-bootstrap(DemoComponent);
+    constructor(public logService: LogService) {
+
+    }
+}
+
+
+
+bootstrap(DemoComponent, [LogService]);

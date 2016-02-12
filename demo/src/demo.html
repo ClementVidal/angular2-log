@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">angular2-log</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="col-xs-3">
+        <button class="btn btn-primary" (click)="logService.debug( 'Debug log')">
+            Log debug
+        </button>
+    </div>
+
+    <div class="col-xs-3">
+        <button class="btn btn-primary" (click)="logService.info( 'Info log')">
+            Log info
+        </button>
+    </div>
+
+    <div class="col-xs-3">
+        <button class="btn btn-primary" (click)="logService.warning( 'Warning log')">
+            Log warning
+        </button>
+    </div>
+
+    <div class="col-xs-3">
+        <button class="btn btn-primary" (click)="logService.error( 'Error log')">
+            Log error
+        </button>
+    </div>
+
+</div>

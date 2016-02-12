@@ -8,50 +8,60 @@ var gls = require('gulp-live-server');
 var path = require('path');
 
 /**
- * Compilation task
+ * Tasks for building, testing, and running demo
  */
-// build_ts
-var tsProject = ts.createProject('tsconfig.json', {});
-
-gulp.task('build_ts', function() {
-
-    var tsResult = gulp.src([
-            'src/*.ts'
-        ])
-        .pipe(ts(tsProject, ts.reporter.defaultReporter()));
-
-    return tsResult.js.pipe(gulp.dest('./dist/js'));
-});
-
 // build_demo
 var demoProject = ts.createProject('demo/tsconfig.json', {});
+gulp.task('build_demo', ['build_src'], function() {
 
-gulp.task('build_demo', function() {
-
-    var tsResult = gulp.src([
-            'demo/src/*.ts'
-        ])
+    var tsResult = gulp.src(['demo/src/*.ts'])
         .pipe(ts(tsProject, ts.reporter.defaultReporter()));
 
     return tsResult.js.pipe(gulp.dest('./demo/dist/js'));
 });
 
 // serve_demo
+var server = null;
 gulp.task('serve_demo', function() {
-
-    var server = gls.static(['demo', '.'], 8888);
+    server = gls.static(['demo'], 8888);
     server.start();
 });
 
-// Build
-gulp.task('build', ['build_ts']);
-
-// build watch
-gulp.task('watch', function() {
-    gulp.watch(['src/*.ts'], ['build_ts']);
+// watch demo sources files
+gulp.task('watch_demo', ['build_demo', 'serve_demo', 'watch_src'], function() {
+    gulp.watch(['demo/dist/js/*', 'demo/index.html'], function(file) {
+        var notif = {
+            type: 'changed',
+            path: __dirname + '/demo/index.html'
+        };
+        server.notify.apply(server, [notif]);
+    });
+    gulp.watch(['demo/src/*.ts'], ['build_demo']);
 });
 
 /**
- * General task
+ * Tasks for building, and testing angular-log
  */
-gulp.task('default', ['build', 'watch']);
+// build
+var tsProject = ts.createProject('tsconfig.json', {});
+gulp.task('build_src', function() {
+
+    var tsResult = gulp.src([
+            'src/*.ts'
+        ])
+        .pipe(ts(tsProject, ts.reporter.defaultReporter()));
+
+    return tsResult.js.pipe(gulp.dest('./')).pipe(gulp.dest('./demo/dist/js'));
+});
+
+// build watch
+gulp.task('watch_src', ['build_src'], function() {
+    gulp.watch(['src/*.ts'], ['build_src']);
+});
+
+/**
+ * Generic tasks
+ */
+gulp.task('build', ['build_demo']);
+
+gulp.task('default', ['build_src', 'build_demo', 'watch_demo']);
