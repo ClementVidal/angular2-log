@@ -4,7 +4,8 @@
   "description": "Angular2 simple log system",
   "main": "index.js",
   "scripts": {
-    "install": "cd ./demo && npm install && gulp build"
+    "install": "gulp build && cd ./demo && npm install",
+    "prepublish": "gulp build && cd ./demo && npm install",
   },
   "repository": {
     "type": "git",
@@ -30,11 +31,8 @@
     "systemjs": "0.19.6"
   },
   "devDependencies": {
-    "bootstrap": "^3.3.6",
     "gulp": "^3.9.1",
     "gulp-live-server": "0.0.29",
-    "gulp-typescript": "^2.11.0",
-    "jquery": "^2.2.0",
-    "tether": "^1.1.1"
+    "gulp-typescript": "^2.11.0"
   }
 }
