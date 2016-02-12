@@ -23,8 +23,8 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2-log/log
             }],
         execute: function() {
             DemoComponent = (function () {
-                function DemoComponent(logService) {
-                    this.logService = logService;
+                function DemoComponent(log) {
+                    this.log = log;
                 }
                 DemoComponent = __decorate([
                     core_1.Component({

@@ -51,4 +51,4 @@ Use it ! :)
 
 ## License
 
-TODO: Write license
+* [MIT](https://opensource.org/licenses/MIT)

@@ -8,28 +8,59 @@
 </nav>
 
 <div class="container">
-    <div class="col-xs-3">
-        <button class="btn btn-primary" (click)="logService.debug( 'Debug log')">
-            Log debug
-        </button>
+    <div class="row">
+        <div class="col-xs-3">
+            <button class="btn btn-primary" (click)="log.debug( 'Debug log')">
+                Log debug
+            </button>
+        </div>
+
+        <div class="col-xs-3">
+            <button class="btn btn-primary" (click)="log.info( 'Info log')">
+                Log info
+            </button>
+        </div>
+
+        <div class="col-xs-3">
+            <button class="btn btn-primary" (click)="log.warning( 'Warning log')">
+                Log warning
+            </button>
+        </div>
+
+        <div class="col-xs-3">
+            <button class="btn btn-primary" (click)="log.error( 'Error log')">
+                Log error
+            </button>
+        </div>
+
     </div>
 
-    <div class="col-xs-3">
-        <button class="btn btn-primary" (click)="logService.info( 'Info log')">
-            Log info
-        </button>
-    </div>
+    <div class="row" >
+        <div class="col-xs-3">
+            <button class="btn btn-primary" (click)="log.to('backend').debug( 'Debug log')">
+                Log debug
+            </button>
+        </div>
 
-    <div class="col-xs-3">
-        <button class="btn btn-primary" (click)="logService.warning( 'Warning log')">
-            Log warning
-        </button>
-    </div>
+        <div class="col-xs-3">
+            <button class="btn btn-primary" (click)="log.to('backend').info( 'Info log')">
+                Log info
+            </button>
+        </div>
 
-    <div class="col-xs-3">
-        <button class="btn btn-primary" (click)="logService.error( 'Error log')">
-            Log error
-        </button>
+        <div class="col-xs-3">
+            <button class="btn btn-primary" (click)="log.to('backend').warning( 'Warning log')">
+                Log warning
+            </button>
+        </div>
+
+        <div class="col-xs-3">
+            <button class="btn btn-primary" (click)="log.to('backend').error( 'Error log')">
+                Log error
+            </button>
+        </div>
+
+
     </div>
 
 </div>

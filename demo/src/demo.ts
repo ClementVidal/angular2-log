@@ -8,7 +8,7 @@ import {LogService} from 'angular2-log/log';
 })
 export class DemoComponent {
 
-    constructor(public logService: LogService) {
+    constructor(public log: LogService) {
 
     }
 }
