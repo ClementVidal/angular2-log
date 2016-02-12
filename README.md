@@ -20,9 +20,11 @@ Inject the service where needed:
 
 ```javascript
 export class YourComponent {
-
     constructor(public logService: LogService) {
-
+		this.logService.debug('Your debug stuff');
+		this.logService.info('An info');
+		this.logService.warning('Take care ');
+		this.logService.error('Too late !');
     }
 }
 ```
