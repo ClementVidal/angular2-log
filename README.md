@@ -66,6 +66,27 @@ export class YourComponent {
 * **serve_demo**: Start a small server on port 8888 to test the demo app.
 * **demo**: Build everything, watch everything and start the server !
 
+## Using the demo
+
+By default the demo app does NOT have any dependencies over angular2-log, you have to setup this dependencies by yourself.  
+You can choose between two differents approach:
+* Using npm install:
+
+```
+cd angular2-log/demo
+npm install angular2-log
+```
+
+* Using npm link:
+
+```
+cd angular2-log
+[sudo] npm link
+cd angular2-log/demo
+[sudo] npm link angular2-log
+```
+
+
 ## Contributing
 
 1. Fork it!
