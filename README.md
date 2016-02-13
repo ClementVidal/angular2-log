@@ -56,7 +56,15 @@ export class YourComponent {
     }
 }
 ```
+## Available Gulp tasks
 
+* **build**: Compile both sources and demo
+* **build_src**: Build only source
+* **build_demo**: Build only demo
+* **watch_src**: Watch all source file and trigger build on change
+* **build_demo**: Watch all demo file and trigger build on change
+* **serve_demo**: Start a small server on port 8888 to test the demo app.
+* **demo**: Build everything, watch everything and start the server !
 
 ## Contributing
 

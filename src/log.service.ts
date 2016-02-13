@@ -6,6 +6,12 @@ import {Subject} from 'rxjs/Rx'
 export class Logger {
 
     subject = null;
+    static level = {
+        debug: 1,
+        info: 2,
+        warning: 3,
+        error: 4
+    };
 
     constructor(public name: string) {
         // Create the RxJs subject
@@ -21,7 +27,7 @@ export class Logger {
         t.push(...args);
         console.log.apply(console, t);
         // Publish an event
-        this.subject.next({ name: this.name, level: 'debug', value: args });
+        this._publishEvent('debug', args);
     }
 
     info(...args) {
@@ -29,60 +35,76 @@ export class Logger {
         t.push(...args);
         console.log.apply(console, t);
         // Publish an event
-        this.subject.next({ name: this.name, level: 'info', value: args });
+        this._publishEvent('info', args);
     }
     warning(...args) {
         var t = ["%s | %cWarning: ", this.name, "color:orange"];
         t.push(...args);
         console.log.apply(console, t);
         // Publish an event
-        this.subject.next({ name: this.name, level: 'warning', value: args });
+        this._publishEvent('warning', args);
     }
     error(...args) {
         var t = ["%s | %cError: ", this.name, "color:red"];
         t.push(...args);
         console.log.apply(console, t);
         // Publish an event
-        this.subject.next({ name: this.name, level: 'error', value: args });
+        this._publishEvent('error', args);
     }
+
+    private _publishEvent(level, ...args) {
+        this.subject.next({ name: this.name, level, value: args });
+    }
+
 }
 
 @Injectable()
 export class LogService {
 
-    _loggers: Map<string,Logger> = null;
+    loggers: Map<string, Logger> = null;
 
     constructor() {
-        this._loggers = new Map<string,Logger>();
-        this.openLogger( 'main' );
+        this.loggers = new Map<string, Logger>();
+        this.openLogger('main');
+    }
+
+    set logLevel( level:string ){
+
     }
 
     openLogger(loggerName: string): Logger {
-        var existingLogger = this._loggers.get(loggerName);
+        var existingLogger = this.loggers.get(loggerName);
         if (!existingLogger) {
             existingLogger = new Logger(loggerName);
-            this._loggers.set(loggerName, existingLogger);
+            this.loggers.set(loggerName, existingLogger);
         }
 
         return existingLogger;
     }
 
     closeLogger(loggerName: string) {
-        var existingLogger = this._loggers.get(loggerName);
+        var existingLogger = this.loggers.get(loggerName);
         if (existingLogger) {
-            this._loggers.delete(loggerName);
+            this.loggers.delete(loggerName);
             existingLogger.closePublication();
         }
 
         return existingLogger;
     }
 
-
-    to(loggerName): Logger {
-        if (this._loggers.has(loggerName)) {
-            return this._loggers.get(loggerName);
+    /**
+     * Redirect log to a given logger.
+     *
+     * If the asked logger does not yet exists it will be created
+     *
+     * @param  {string} loggerName
+     * @return {Logger}
+     */
+    to(loggerName: string): Logger {
+        if (this.loggers.has(loggerName)) {
+            return this.loggers.get(loggerName);
         } else {
-            return this.openLogger( loggerName );
+            return this.openLogger(loggerName);
         }
     }
 
