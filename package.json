@@ -6,7 +6,7 @@
     "scripts": {
         "prepublish": "gulp build && cd ./demo && npm install",
         "start": "gulp demo",
-        "postversion": "git push && git push --tag
+        "postversion": "git push && git push --tag"
     },
     "repository": {
         "type": "git",
