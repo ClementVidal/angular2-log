@@ -4,7 +4,6 @@
   "description": "Angular2 simple log system",
   "main": "index.js",
   "scripts": {
-    "install": "gulp build && cd ./demo && npm install",
     "prepublish": "gulp build && cd ./demo && npm install"
   },
   "repository": {
