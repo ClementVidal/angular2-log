@@ -1,6 +1,6 @@
 {
   "name": "angular2-log",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Angular2 simple log system",
   "main": "index.js",
   "scripts": {
