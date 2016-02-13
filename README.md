@@ -2,11 +2,39 @@
 
 This package provide an easy to use log system for angular2 applications.
 
-## Installation
+Every log are outputted to a named logger.
+Each logger has an Observable that can be subscribed in order to achieve various interesting stuffs !
 
-npm install angular2-log
+I hope this will help !
 
 ## Usage
+
+Install it:
+```
+npm install --save angular2-log
+```
+
+Update System.js config.
+This is needed to map import of angular2-log to the right folder.  
+*( I do not really get why it's needed, so if anybody have a clue or an answer, please
+let me know !)*
+```
+System.config({
+    map: {
+        'angular2-log': 'node_modules/angular2-log'
+    },
+    packages: {
+        'angular2-log': {
+            defaultExtension: 'js'
+        },
+        'public/js': {
+            format: 'register',
+            defaultExtension: 'js'
+        }
+    }
+});
+```
+
 
 Add to your injector the provider for the log service:
 ```javascript
@@ -16,7 +44,7 @@ import {LogService} from 'angular2-log/log';
 bootstrap(DemoComponent, [LogService]);
 ```
 
-Inject the service where needed:
+Inject the service where needed, and use it !
 
 ```javascript
 export class YourComponent {
@@ -29,7 +57,6 @@ export class YourComponent {
 }
 ```
 
-Use it ! :)
 
 ## Contributing
 
@@ -41,7 +68,7 @@ Use it ! :)
 
 ## History
 
-* 0.0.0: Still working on it :)
+* 0.0.2: Still working on it :)
 
 ## Contact
 
