@@ -86,18 +86,13 @@ cd angular2-log/demo
 [sudo] npm link angular2-log
 ```
 
+Once this is done:
+```
+gulp demo
+```
 
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
-## History
-
-* 0.0.2: Still working on it :)
+This will build everything and start the demo.
+Which will be available at: http://localhost:8888
 
 ## Contact
 
