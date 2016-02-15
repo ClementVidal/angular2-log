@@ -1,75 +1,24 @@
 import {Injectable} from 'angular2/core';
+import {Logger} from './logger';
 
 import {Subject} from 'rxjs/Rx'
 
-
-export class Logger {
-
-    subject = null;
-    static level = {
-        debug: 1,
-        info: 2,
-        warning: 3,
-        error: 4
-    };
-
-    constructor(public name: string) {
-        // Create the RxJs subject
-        this.subject = new Subject();
-    }
-
-    closePublication() {
-        this.subject.onCompleted();
-    }
-
-    debug(...args) {
-        var t = ["%s | %cDebug: ", this.name, "color:green"];
-        t.push(...args);
-        console.log.apply(console, t);
-        // Publish an event
-        this._publishEvent('debug', args);
-    }
-
-    info(...args) {
-        var t = ["%s | %cInfo: ", this.name, "color:blue"];
-        t.push(...args);
-        console.log.apply(console, t);
-        // Publish an event
-        this._publishEvent('info', args);
-    }
-    warning(...args) {
-        var t = ["%s | %cWarning: ", this.name, "color:orange"];
-        t.push(...args);
-        console.log.apply(console, t);
-        // Publish an event
-        this._publishEvent('warning', args);
-    }
-    error(...args) {
-        var t = ["%s | %cError: ", this.name, "color:red"];
-        t.push(...args);
-        console.log.apply(console, t);
-        // Publish an event
-        this._publishEvent('error', args);
-    }
-
-    private _publishEvent(level, ...args) {
-        this.subject.next({ name: this.name, level, value: args });
-    }
-
-}
 
 @Injectable()
 export class LogService {
 
     loggers: Map<string, Logger> = null;
 
+    private _serviceNotification = null;
+
     constructor() {
         this.loggers = new Map<string, Logger>();
+        this._serviceNotification = new Subject();
         this.openLogger('main');
     }
 
-    set logLevel( level:string ){
-
+    set level( level:string ){
+        this._serviceNotification.next( { type: 'LEVEL', payload: level });
     }
 
     openLogger(loggerName: string): Logger {
@@ -77,6 +26,10 @@ export class LogService {
         if (!existingLogger) {
             existingLogger = new Logger(loggerName);
             this.loggers.set(loggerName, existingLogger);
+            this._serviceNotification.subscribe(
+                notif => {
+                    existingLogger.onServiceNotification( notif );
+                });
         }
 
         return existingLogger;
