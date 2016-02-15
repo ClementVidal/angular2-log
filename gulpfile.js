@@ -14,7 +14,10 @@ var path = require('path');
 var demoProject = ts.createProject('demo/src/tsconfig.json', {});
 gulp.task('build_demo', function() {
 
-    var tsResult = gulp.src(['demo/src/*.ts'])
+    var tsResult = gulp.src([
+            'node_modules/angular2/typings/browser.d.ts',
+            'demo/src/*.ts'
+        ])
         .pipe(ts(demoProject, ts.reporter.defaultReporter()));
 
     return tsResult.js.pipe(gulp.dest('./demo/lib'));
@@ -47,6 +50,7 @@ var tsProject = ts.createProject('src/tsconfig.json', {});
 gulp.task('build_src', function() {
 
     var tsResult = gulp.src([
+            'node_modules/angular2/typings/browser.d.ts',
             'src/*.ts'
         ])
         .pipe(ts(tsProject, ts.reporter.defaultReporter()));

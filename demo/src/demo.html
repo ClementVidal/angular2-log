@@ -66,11 +66,39 @@
                 Publications
             </h1>
             <div>
-                <button class="btn btn-primary" (click)="log.to('backend').debug( 'Debug log')">
+                <button class="btn btn-primary" (click)="log.level = 'debug'">
                     Close Backend publication
                 </button>
             </div>
-            
+            <h1>
+                Log level
+            </h1>
+            <div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="logLevel" (click)="log.level = 'debug'" checked>
+                        debug
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="logLevel" (click)="log.level = 'info'" >
+                        info
+                    </label>
+                </div>
+                <div class="radio disabled">
+                    <label>
+                        <input type="radio" name="logLevel" (click)="log.level = 'warning'" >
+                        warning
+                    </label>
+                </div>
+                <div class="radio disabled">
+                    <label>
+                        <input type="radio" name="logLevel" (click)="log.level = 'error'" >
+                        error
+                    </label>
+                </div>
+            </div>
         </div>
 
     </div>

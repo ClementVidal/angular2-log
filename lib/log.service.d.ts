@@ -1,25 +1,9 @@
-/// <reference path="../angular2-log/node_modules/angular2/typings/browser.d.ts" />
-export declare class Logger {
-    name: string;
-    subject: any;
-    static level: {
-        debug: number;
-        info: number;
-        warning: number;
-        error: number;
-    };
-    constructor(name: string);
-    closePublication(): void;
-    debug(...args: any[]): void;
-    info(...args: any[]): void;
-    warning(...args: any[]): void;
-    error(...args: any[]): void;
-    private _publishEvent(level, ...args);
-}
+import { Logger } from './logger';
 export declare class LogService {
     loggers: Map<string, Logger>;
+    private _serviceNotification;
     constructor();
-    logLevel: string;
+    level: string;
     openLogger(loggerName: string): Logger;
     closeLogger(loggerName: string): Logger;
     to(loggerName: string): Logger;
