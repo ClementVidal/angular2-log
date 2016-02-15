@@ -2,7 +2,7 @@
   "name": "angular2-log",
   "version": "0.0.3",
   "description": "Angular2 simple log system",
-  "main": "index.js",
+  "main": "log.js",
   "scripts": {
     "prepublish": "gulp build && cd ./demo && npm install",
     "start": "gulp demo",

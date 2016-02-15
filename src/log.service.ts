@@ -1,3 +1,5 @@
+///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
+
 import {Injectable} from 'angular2/core';
 
 import {Subject} from 'rxjs/Rx'

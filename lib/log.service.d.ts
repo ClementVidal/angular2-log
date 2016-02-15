@@ -1,3 +1,4 @@
+/// <reference path="../angular2-log/node_modules/angular2/typings/browser.d.ts" />
 export declare class Logger {
     name: string;
     subject: any;
