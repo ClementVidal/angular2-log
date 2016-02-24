@@ -1,8 +1,24 @@
 import {Subject} from 'rxjs/Rx'
 
+export interface Notification {
+    type: string;
+    payload: {
+        level?: string;
+    };
+}
+
+export var Level = {
+    debug: 1,
+    info: 2,
+    warning: 3,
+    error: 4
+}
+
+
 export class Logger {
 
     subject = null;
+    level: number = Level.info;
 
     constructor(public name: string) {
         // Create the RxJs subject
@@ -13,8 +29,11 @@ export class Logger {
         this.subject.onCompleted();
     }
 
-    onServiceNotification( notif ) {
-            console.log( 'NOTIF FROM SERVICE: ', notif);
+    onServiceNotification( notif: Notification ) {
+        if( notif.type === "LEVEL" ) {
+            this.level= Level[notif.payload.level];
+            console.log( this.level );
+        }
     };
 
     debug(...args) {

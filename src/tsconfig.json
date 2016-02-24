@@ -11,6 +11,7 @@
         "declaration": true
     },
     "files": [
-    "../typings/browser.d.ts"
+        "./log.service.ts",
+        "./logger.ts"
   ]
 }

@@ -1,3 +1,4 @@
+/// <reference path="../angular2-log/node_modules/angular2/typings/browser.d.ts" />
 import { Logger } from './logger';
 export declare class LogService {
     loggers: Map<string, Logger>;

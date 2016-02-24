@@ -1,5 +1,7 @@
+///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
+
 import {Injectable} from 'angular2/core';
-import {Logger} from './logger';
+import {Logger, Notification} from './logger';
 
 import {Subject} from 'rxjs/Rx'
 
@@ -9,7 +11,7 @@ export class LogService {
 
     loggers: Map<string, Logger> = null;
 
-    private _serviceNotification = null;
+    private _serviceNotification: Subject<any> = null;
 
     constructor() {
         this.loggers = new Map<string, Logger>();
@@ -18,7 +20,7 @@ export class LogService {
     }
 
     set level( level:string ){
-        this._serviceNotification.next( { type: 'LEVEL', payload: level });
+        this._serviceNotification.next( { type: 'LEVEL', payload: { level }} );
     }
 
     openLogger(loggerName: string): Logger {
