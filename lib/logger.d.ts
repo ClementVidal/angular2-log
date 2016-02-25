@@ -9,6 +9,7 @@ export declare var Level: {
     info: number;
     warning: number;
     error: number;
+    mute: number;
 };
 export declare class Logger {
     name: string;
