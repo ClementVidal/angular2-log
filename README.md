@@ -18,7 +18,7 @@ Update System.js config.
 This is needed to map import of angular2-log to the right folder.  
 *( I do not really get why it's needed, so if anybody have a clue or an answer, please
 let me know !)*
-```
+```javascript
 System.config({
     map: {
         'angular2-log': 'node_modules/angular2-log'
@@ -72,14 +72,14 @@ By default the demo app does NOT have any dependencies over angular2-log, you ha
 You can choose between two differents approach:
 * Using npm install:
 
-```
+```bash
 cd angular2-log/demo
 npm install angular2-log
 ```
 
 * Using npm link:
 
-```
+```bash
 cd angular2-log
 [sudo] npm link
 cd angular2-log/demo
@@ -87,7 +87,7 @@ cd angular2-log/demo
 ```
 
 Once this is done:
-```
+```bash
 gulp demo
 ```
 
